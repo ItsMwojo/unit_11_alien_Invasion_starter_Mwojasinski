@@ -13,6 +13,8 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 
+
+
 class AlienInvasion:
     """Overall class of the entire game"""
 
@@ -38,7 +40,7 @@ class AlienInvasion:
         self.play_button = Button(self, "Play")
 
     def run_game(self):
-        """Start main loop"""
+        """Start main loop for gameplay"""
         while True:
             self._check_events()
             if self.game_active:
@@ -83,9 +85,9 @@ class AlienInvasion:
         """Start a new game when the player clicks Play."""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.game_active:
-            # Reset game settings.
+            # Reset game settings
             self.settings.initialize_dynamic_settings()
-            # Reset game statistics.
+            # Reset game statistics
             self.stats.reset_stats()
             self.sb.prep_score()
             self.sb.prep_level()
@@ -111,7 +113,7 @@ class AlienInvasion:
         self._check_bullet_alien_collisions()
 
     def _check_bullet_alien_collisions(self):
-        """Respond to bullet-alien collisions."""
+        """Respond to bullet-alien collisions, must remove them"""
         # Remove aliens after getting hit
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
         if collisions:
